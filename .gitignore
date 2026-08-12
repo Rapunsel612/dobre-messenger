@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+*.egg-info/
+dist/
+build/
+*.spec
+venv/
+env/
+.env
+
+# Data folder (contains saved tokens)
+data/
+
+# Eel cache
+web/.cache/
+web/*.log
+
+# IDE
+.vscode/
+.idea/

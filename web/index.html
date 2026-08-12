@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dobre messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+
+    <div class="glass-container">
+
+        <div class="header">
+            <h1>dobre messenger</h1>
+        </div>
+
+        <div class="field-group">
+            <label>Discord Token</label>
+            <div class="token-row">
+                <div class="input-with-eye">
+                    <input type="text" id="tokenInput" placeholder="Paste your token here..." autocomplete="off">
+                    <span id="eyeToggle" class="eye">👁️</span>
+                </div>
+                <button id="guideBtn" class="btn guide-btn">🔑 Guide</button>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label>Channel IDs</label>
+            <input type="text" id="channelsInput" placeholder="1128038142075752639, 1128038142075752639, etc.">
+        </div>
+
+        <div class="row">
+            <div class="field-group half">
+                <label>Interval (s)</label>
+                <input type="number" id="intervalInput" value="10" min="1">
+            </div>
+            <div class="field-group half">
+                <label>Message</label>
+                <textarea id="messageInput" rows="3" placeholder="Enter your message here..."></textarea>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <button id="startBtn" class="btn start">▶ START</button>
+            <button id="stopBtn" class="btn stop" disabled>⏹ STOP</button>
+        </div>
+
+        <div class="terminal-wrapper">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="term-title">terminal</span>
+            </div>
+            <div id="logContainer" class="terminal-body"></div>
+        </div>
+
+    </div>
+
+    <!-- GUIDE POPUP -->
+    <div id="guidePopup" class="guide-overlay">
+        <div class="guide-box">
+            <h2 class="guide-title">🔑 Get your Discord Token</h2>
+            <ol class="guide-list">
+                <li>Open Discord in your <strong>browser</strong> (not the desktop app).</li>
+                <li>Press <span class="guide-key">F12</span> → <strong>Application</strong> tab.</li>
+                <li>Press <span class="guide-key">Ctrl</span> + <span class="guide-key">Shift</span> + <span class="guide-key">M</span> to open the Local Storage filter.</li>
+                <li>Type <strong>token</strong> in the search box – the token key will appear.</li>
+                <li>Copy its value and paste it in the field above.</li>
+            </ol>
+            <button id="closeGuideBtn" class="guide-close-btn">Got it!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+@font-face {
+    font-family: 'CustomMono';
+    src: url('Monospace.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SFProBlackItalic';
+    src: url('SF-Pro-Display-BlackItalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SFPro';
+    src: url('SF-Pro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SFProBlackItalic', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    padding: 0px;
+}
+
+/* ---- HIDE SPIN BUTTONS ON NUMBER INPUTS ---- */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+#intervalInput::-webkit-outer-spin-button,
+#intervalInput::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+#intervalInput {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+/* ---- LIQUID GLASS CONTAINER ---- */
+.glass-container {
+    width: 680px;
+    max-width: 100%;
+    padding: 30px 28px;
+    padding-bottom: 50px;
+}
+
+/* ---- HEADER ---- */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+.header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #6ca77b, #5a7541);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.badge {
+    background: rgba(255,255,255,0.12);
+    padding: 4px 14px;
+    border-radius: 40px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ---- FIELD GROUPS ---- */
+.field-group {
+    margin-bottom: 18px;
+}
+.field-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+    padding-left: 4px;
+}
+
+.field-group input,
+.field-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    resize: vertical;
+}
+.field-group input:focus,
+.field-group textarea:focus {
+    border-color: rgba(168, 192, 255, 0.5);
+    box-shadow: 0 0 0 4px rgba(168, 192, 255, 0.08);
+}
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+    color: rgba(255,255,255,0.2);
+}
+
+/* ---- TOKEN & CHANNELS & MESSAGE – folosesc SF-Pro ---- */
+#tokenInput,
+#channelsInput {
+    font-family: 'SFPro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    font-weight: 400;
+}
+
+.field-group textarea {
+    font-family: 'SFPro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 80px;
+}
+
+/* ---- TOKEN WITH EYE & GUIDE BUTTON ---- */
+.token-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.token-row .input-with-eye {
+    flex: 1;
+}
+
+.input-with-eye {
+    position: relative;
+}
+.input-with-eye input {
+    padding-right: 48px;
+}
+.eye {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    transition: color 0.2s;
+}
+.eye:hover { color: rgba(255,255,255,0.7); }
+
+/* ---- GUIDE BUTTON ---- */
+.guide-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    white-space: nowrap;
+    height: 45px;
+    font-family: 'SFProBlackItalic', sans-serif;
+}
+
+.guide-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ---- ROW LAYOUT ---- */
+.row {
+    display: flex;
+    gap: 16px;
+}
+.half { flex: 1; }
+
+.row .half:first-child {
+    flex: 0 0 120px;
+}
+
+#intervalInput {
+    text-align: center;
+    font-size: 24px;   /* mărit */
+    font-weight: 600;
+}
+
+/* ---- BUTTONS ---- */
+.button-row {
+    display: flex;
+    gap: 14px;
+    margin: 8px 0 20px 0;
+}
+.btn {
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+}
+.start, .stop {
+    flex: 1;
+    padding: 14px 0;
+    border-radius: 30px;
+    font-size: 16px;
+}
+.start {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: #0a1a1a;
+    box-shadow: 0 4px 20px rgba(67, 233, 123, 0.25);
+}
+.start:hover:not(:disabled) {
+    transform: scale(1.02);
+    box-shadow: 0 6px 30px rgba(67, 233, 123, 0.4);
+}
+.start:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+.stop {
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.25);
+}
+.stop:hover:not(:disabled) {
+    background: rgba(255, 107, 107, 0.25);
+    transform: scale(1.02);
+}
+.stop:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* ---- TERMINAL (monospace) ---- */
+.terminal-wrapper {
+    margin-top: 8px;
+    border-radius: 24px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+}
+.terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.red    { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green  { background: #27c93f; }
+.term-title {
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+    font-family: 'CustomMono', 'SF Mono', monospace;
+}
+.terminal-body {
+    height: 160px;
+    padding: 14px 18px;
+    overflow-y: auto;
+    font-family: 'CustomMono', 'SF Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    scroll-behavior: smooth;
+}
+.terminal-body::-webkit-scrollbar {
+    width: 4px;
+}
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+}
+.terminal-body .log-line {
+    opacity: 0.9;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 550px) {
+    .row { flex-direction: column; gap: 0; }
+    .glass-container { padding: 22px 16px; }
+    .terminal-body { height: 120px; }
+}
+
+/* ---- PLACEHOLDER STYLES ---- */
+::placeholder {
+    font-family: 'CustomMono', -apple-system, monospace !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: rgba(255,255,255,0.35);
+}
+
+.field-group.message-group textarea::placeholder {
+    font-family: 'CustomMono', 'SF Mono', monospace !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* ---- GUIDE POPUP ---- */
+.guide-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-overlay.show {
+    display: flex;
+}
+
+.guide-box {
+    background: #1C1C1E;
+    padding: 30px;
+    border-radius: 24px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.guide-title {
+    color: #fff;
+    font-family: 'SFProBlackItalic', sans-serif;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.guide-list li::marker {
+    font-family: 'SFPro', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.guide-list {
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'SFPro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.8;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.guide-key {
+    font-family: 'SFPro', 'SF Pro Display', -apple-system, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-close-btn {
+    display: block;
+    margin: 28px auto 0 auto;
+    padding: 14px 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    color: #fff;
+    font-family: 'SFProBlackItalic', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.guide-close-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- SF PRO BLACK ITALIC: BUTTONS + INTERVAL ---- */
+
+.btn,
+#intervalInput {
+    font-family: 'SFProBlackItalic', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 900 !important;
+}
