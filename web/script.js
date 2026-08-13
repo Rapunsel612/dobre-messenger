@@ -8,11 +8,9 @@ const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
 const logContainer = document.getElementById('logContainer');
 
-// --- Eye toggle for token (inițial) --
 let tokenVisible = false;
 let tokenRealValue = '';
 
-// Funcție care actualizează afișajul în funcție de tokenVisible
 function updateTokenDisplay() {
     if (tokenVisible) {
         tokenInput.value = tokenRealValue;
@@ -23,7 +21,6 @@ function updateTokenDisplay() {
     }
 }
 
-// La fiecare tastare, salvăm textul real (eliminăm punctele)
 tokenInput.addEventListener('input', function() {
     const real = this.value.replace(/•/g, '');
     tokenRealValue = real;
@@ -34,13 +31,11 @@ tokenInput.addEventListener('input', function() {
     }
 });
 
-// Butonul eye toggle – comută vizibilitatea
 eyeToggle.addEventListener('click', () => {
     tokenVisible = !tokenVisible;
     updateTokenDisplay();
 });
 
-// --- Terminal ---
 function addLog(text) {
     const line = document.createElement('div');
     line.className = 'log-line';
@@ -54,13 +49,11 @@ function addLog(text) {
     logContainer.scrollTop = logContainer.scrollHeight;
 }
 
-// --- Exposed function for Python to push logs ---
 eel.expose(log_push);
 function log_push(msg) {
     addLog(msg);
 }
 
-// --- Exposed function to update button states ---
 eel.expose(update_buttons);
 function update_buttons(state) {
     if (state === 'running') {
@@ -90,21 +83,20 @@ async function loadConfig() {
     } catch (e) {
         console.log('ℹ️ No saved config found.');
     }
-    // După încărcare, forțează starea ascunsă (puncte)
     tokenVisible = false;
     updateTokenDisplay();
 }
 
 function saveConfig() {
     eel.save_config_frontend(
-        tokenRealValue,   // trimite tokenul real
+        tokenRealValue,
         channelsInput.value,
         intervalInput.value,
         messageInput.value
     );
 }
 
-// ========== AUTO-SAVE ON KEYSTROKE (debounced) ==========
+// ========== AUTO-SAVE ON KEYSTROKE ==========
 
 let saveTimeout;
 
@@ -123,7 +115,6 @@ messageInput.addEventListener('input', autoSave);
 
 // ========== START / STOP ==========
 
-// --- Start button ---
 startBtn.onclick = function() {
     const token = tokenRealValue;
     const channels = channelsInput.value;
@@ -137,16 +128,14 @@ startBtn.onclick = function() {
     eel.start_bot(token, channels, interval, message);
 };
 
-// --- Stop button ---
 stopBtn.addEventListener('click', () => {
     addLog('⏹ Stopping...');
     eel.stop_bot();
 });
 
-// ========== LOAD ON STARTUP ==========
 loadConfig();
 
-// ========== GUIDE BUTTON ==========
+// ========== GUIDE ==========
 document.getElementById('guideBtn').addEventListener('click', () => {
     document.getElementById('guidePopup').classList.add('show');
 });
